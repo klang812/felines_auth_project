@@ -2,14 +2,14 @@ class User < ApplicationRecord
   attr_accessor :password
   attr_accessor :admin
   validates_confirmation_of :password
-  validates :password, :format: PASSWORD_REQUIREMENTS
+  # validates :password, format: PASSWORD_REQUIREMENTS
   validates :email, :presence => true, :uniqueness => true
   before_save :encrypt_password
 
-  if current_user && current_user.admin
-    user = User.find_by "email = ?", email
-    user
-  end
+  # if current_user && current_user.admin
+  #   user = User.find_by "email = ?", email
+  #   user
+  # end
 
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt
@@ -25,13 +25,13 @@ class User < ApplicationRecord
     end
   end
 
-  PASSWORD_REQUIREMENTS = /\A
-    (?=.{8,})
-    (?= .*\d)
-    (?=.*[a-z])
-    (?=.*[A-Z])
-    (?=.*[[:^alnum:]])
-    /x
+  # PASSWORD_REQUIREMENTS = /\A
+  #   (?=.{8,})
+  #   (?= .*\d)
+  #   (?=.*[a-z])
+  #   (?=.*[A-Z])
+  #   (?=.*[[:^alnum:]])
+  #   /x
 
 
 end
