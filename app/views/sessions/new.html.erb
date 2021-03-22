@@ -1,0 +1,10 @@
+<h1>Sign in</h1>
+<%= form_with signin_path do %>
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+  <%= form.submit "Sign in" %>
+<%= end %>
+
+
